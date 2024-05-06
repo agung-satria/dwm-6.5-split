@@ -1,5 +1,10 @@
 /* See LICENSE file for copyright and license details. */
 
+/* constants */
+#define TERMINAL "st"
+#define TERMCLASS "St"
+#define TERMINALT "wezterm"
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -20,17 +25,44 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = { TERMINAL, "-n", "spterm", "-g", "100x25", NULL };
+const char *spcmd2[] = { TERMINAL, "-n", "spfm", "-g", "100x25", "-e", "lf", NULL };
+const char *spcmd3[] = { TERMINAL, "-n", "spmus", "-g", "100x25", "-e", "ncmpcpp", NULL };
+const char *spcmd4[] = { "galculator", NULL };
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"spterm",      spcmd1},
+	{"spfm",        spcmd2},
+  {"spmus",       spcmd3},
+  {"spcalc",      spcmd4},
+};
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class          instance    title       tags mask     isfloating   monitor */
+  { "float-st",	    NULL,			  NULL,		  0,           1,			    -1 },
+  { "File-roller",	NULL,			  NULL,		  0,           1,			    -1 },
+  { "SimpleScreenRecorder",NULL,NULL,		  0,           1,			    -1 },
+  { "xdman-Main",   NULL,			  NULL,		  0,           1,			    -1 },
+  { "zenity",       NULL,			  NULL,		  0,           1,			    -1 },
+  { "firefox",      NULL,			  NULL,		  1 << 1,	 	   0,			    -1 },
+  { "TelegramDesktop",NULL,	    NULL,		  1 << 3,	 	   0,			    -1 },
+  { "Gimp",	        NULL,			  NULL,		  1 << 5,      0,			    -1 },
+  { "Inkscape",	    NULL,			  NULL,		  1 << 6,      0,			    -1 },
+  { "obs",	        NULL,			  NULL,		  1 << 7,      0,			    -1 },
+  { TERMCLASS,	    "spterm",		NULL,		  SPTAG(0),	   1,			    -1 },
+  { TERMCLASS,	    "spfm",		  NULL,		  SPTAG(1),	   1,			    -1 },
+  { TERMCLASS,	    "spmus",		NULL,		  SPTAG(2),	   1,			    -1 },
+  { "Galculator",   "galculator",NULL,    SPTAG(3),	   1,			    -1 },
 };
 
 /* layout(s) */
@@ -88,6 +120,10 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+  { MODKEY|ShiftMask,            	XK_Return, togglescratch,  {.ui = 0 } },
+	{ MODKEY,            			      XK_e,	     togglescratch,  {.ui = 1 } },
+	{ MODKEY,            			      XK_m,	     togglescratch,  {.ui = 2 } },
+  { MODKEY,                       XK_apostrophe,togglescratch,{.ui = 3 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -111,7 +147,7 @@ static const Button buttons[] = {
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkClientWin,         MODKEY,         Button1,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
