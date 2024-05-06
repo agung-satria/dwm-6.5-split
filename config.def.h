@@ -173,6 +173,9 @@ static const Key keys[] = {
 	{ MODKEY,            			      XK_e,	     togglescratch,  {.ui = 1 } },
 	{ MODKEY,            			      XK_m,	     togglescratch,  {.ui = 2 } },
   { MODKEY,                       XK_apostrophe,togglescratch,{.ui = 3 } },
+  { MODKEY|ControlMask,           XK_minus,  setborderpx,    {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_equal,  setborderpx,    {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_0,      setborderpx,    {.i = 0 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
