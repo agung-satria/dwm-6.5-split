@@ -28,10 +28,10 @@ static const int splitstatus        = 1;        /* 1 for split status items */
 static const char *splitdelim       = ";";       /* Character used for separating status */
 static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=13" };
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=13";
-static const char normbgcolor[]       = "#14121b";
-static const char normbordercolor[]   = "#272729";
-static const char normfgcolor[]       = "#b6b8c0";
-static const char selfgcolor[]        = "#e0def4";
+static const char normbgcolor[]       = "#141414";
+static const char normbordercolor[]   = "#272829";
+static const char normfgcolor[]       = "#abaeb5";
+static const char selfgcolor[]        = "#c7c9d0";
 static const char selbordercolor[]    = "#666a7c";
 static const char selbgcolor[]        = "#3c3f43";
 static const char *colors[][3]        = {
