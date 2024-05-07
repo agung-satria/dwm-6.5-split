@@ -25,15 +25,15 @@ static       int smartgaps          = 1;        /* 1 means no outer gap when the
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int splitstatus        = 1;        /* 1 for split status items */
-static const char *splitdelim       = ";";       /* Character used for separating status */
+static const char *splitdelim       = ";";      /* Character used for separating status */
 static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=13" };
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=13";
-static const char normbgcolor[]       = "#141414";
-static const char normbordercolor[]   = "#272829";
-static const char normfgcolor[]       = "#abaeb5";
-static const char selfgcolor[]        = "#c7c9d0";
-static const char selbordercolor[]    = "#666a7c";
-static const char selbgcolor[]        = "#3c3f43";
+static const char normbgcolor[]       = "#202020";
+static const char normbordercolor[]   = "#504945";
+static const char normfgcolor[]       = "#ebebeb";
+static const char selfgcolor[]        = "#3c3836";
+static const char selbordercolor[]    = "#a4adad";
+static const char selbgcolor[]        = "#83a598";
 static const char *colors[][3]        = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
