@@ -28,12 +28,12 @@ static const int splitstatus        = 1;        /* 1 for split status items */
 static const char *splitdelim       = ";";      /* Character used for separating status */
 static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=13" };
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=13";
-static const char normbgcolor[]       = "#202020";
-static const char normbordercolor[]   = "#504945";
-static const char normfgcolor[]       = "#ebebeb";
-static const char selfgcolor[]        = "#3c3836";
-static const char selbordercolor[]    = "#a4adad";
-static const char selbgcolor[]        = "#83a598";
+static const char normbgcolor[]       = "#141414";
+static const char normbordercolor[]   = "#272829";
+static const char normfgcolor[]       = "#abaeb5";
+static const char selfgcolor[]        = "#c7c9d0";
+static const char selbordercolor[]    = "#666a7c";
+static const char selbgcolor[]        = "#3c3f43";
 static const char *colors[][3]        = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -136,8 +136,8 @@ static const Key keys[] = {
 	{ ALTKEY,			                  XK_space,	 spawn,          {.v = (const char*[]){ "rofi-drun-win", NULL } } },
 	// { MODKEY,			                  XK_g,		   spawn,          {.v = (const char*[]){ "rofi-todo", NULL } } },
   { MODKEY,                       XK_g,      spawn,          SHCMD("rofi-todo; pkill -RTMIN+9 dwmblocks") },
-	// { MODKEY,				                XK_grave,	 spawn,          {.v = (const char*[]){ "rofi-emoji", NULL } } },
-	{ MODKEY,				                XK_grave,	 spawn,          {.v = (const char*[]){ "dmenuunicode", NULL } } },
+	{ MODKEY,				                XK_grave,	 spawn,          {.v = (const char*[]){ "rofi-emoji", NULL } } },
+	// { MODKEY,				                XK_grave,	 spawn,          {.v = (const char*[]){ "dmenuunicode", NULL } } },
 	{ ALTKEY,				                XK_Escape, spawn,          {.v = (const char*[]){ "rofi-powermenu", NULL } } },
 	{ MODKEY,				                XK_Escape, spawn,          {.v = (const char*[]){ "rofi-powermenu-big", NULL } } },
 	{ MODKEY,			                  XK_Return, spawn,          {.v = (const char*[]){ TERMINAL, NULL } } },
@@ -192,6 +192,22 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_f,      togglefullscreen, {0} },
   { MODKEY,			                  XK_s,		   togglesticky,	 {0} },
+	{ MODKEY,                       XK_Down,   moveresize,     {.v = "0x 25y 0w 0h" } },
+	{ MODKEY,                       XK_Up,     moveresize,     {.v = "0x -25y 0w 0h" } },
+	{ MODKEY,                       XK_Right,  moveresize,     {.v = "25x 0y 0w 0h" } },
+	{ MODKEY,                       XK_Left,   moveresize,     {.v = "-25x 0y 0w 0h" } },
+	{ MODKEY|ShiftMask,             XK_Down,   moveresize,     {.v = "0x 0y 0w 25h" } },
+	{ MODKEY|ShiftMask,             XK_Up,     moveresize,     {.v = "0x 0y 0w -25h" } },
+	{ MODKEY|ShiftMask,             XK_Right,  moveresize,     {.v = "0x 0y 25w 0h" } },
+	{ MODKEY|ShiftMask,             XK_Left,   moveresize,     {.v = "0x 0y -25w 0h" } },
+	{ MODKEY|ControlMask,           XK_Up,     moveresizeedge, {.v = "t"} },
+	{ MODKEY|ControlMask,           XK_Down,   moveresizeedge, {.v = "b"} },
+	{ MODKEY|ControlMask,           XK_Left,   moveresizeedge, {.v = "l"} },
+	{ MODKEY|ControlMask,           XK_Right,  moveresizeedge, {.v = "r"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Up,     moveresizeedge, {.v = "T"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Down,   moveresizeedge, {.v = "B"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Left,   moveresizeedge, {.v = "L"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Right,  moveresizeedge, {.v = "R"} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
